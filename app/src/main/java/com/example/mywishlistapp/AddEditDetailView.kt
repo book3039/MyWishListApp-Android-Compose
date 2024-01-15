@@ -38,8 +38,10 @@ fun AddEditDetailView(
             AppBarView(
                 title =
                 if (id != 0L) stringResource(id = R.string.update_wish)
-                else stringResource(id = R.string.add_wish)
-            )
+                else stringResource(id = R.string.add_wish),
+            ) {
+                navController.navigateUp()
+            }
         }
     ) {
         Column(
@@ -70,7 +72,8 @@ fun AddEditDetailView(
             Spacer(modifier = Modifier.height(10.dp))
             Button(onClick = {
                 if (viewModel.wishTitleState.isNotEmpty() &&
-                    viewModel.wishDescriptionState.isNotEmpty()) {
+                    viewModel.wishDescriptionState.isNotEmpty()
+                ) {
                     // TODO UpdateWish
                 } else {
                     // TODO AddWish
@@ -82,7 +85,7 @@ fun AddEditDetailView(
                     style = TextStyle(fontSize = 18.sp)
                 )
             }
-            
+
         }
     }
 }

@@ -21,11 +21,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.mywishlistapp.data.DummyWish
 import com.example.mywishlistapp.data.Wish
 
 @Composable
-fun HomeView() {
+fun HomeView(
+    navController: NavController,
+    viewModel: WishViewModel
+) {
 
     val context = LocalContext.current
 
@@ -42,6 +46,7 @@ fun HomeView() {
                 backgroundColor = Color.Black,
                 onClick = {
                     Toast.makeText(context, "FAButton Clicked", Toast.LENGTH_LONG).show()
+                    navController.navigate(Screen.AddScreen.route)
                 }
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = null)
@@ -53,10 +58,10 @@ fun HomeView() {
                 .fillMaxSize()
                 .padding(it)
         ) {
-            items(DummyWish.wishList) {
-                wish -> WishItem(wish = wish) {
+            items(DummyWish.wishList) { wish ->
+                WishItem(wish = wish) {
 
-            }
+                }
             }
         }
     }
